@@ -1,0 +1,17 @@
+abstract final class AppAssets {
+  static const String _basePath = 'assets/images/';
+  static const String bookClubLight = '${_basePath}Book Club-1.png';
+  static const String bookClubDark = '${_basePath}Book Club.png';
+  static const String exhibitionLight = '${_basePath}Exhibition-1.png';
+  static const String exhibitionDark = '${_basePath}Exhibition.png';
+  static const String birthdayLight = '${_basePath}Birthday-1.png';
+  static const String birthdayDark = '${_basePath}Birthday.png';
+  static const String meetingLight = '${_basePath}Meeting-1.png';
+  static const String meetingDark = '${_basePath}Meeting.png';
+  static const String sport = '${_basePath}Sport.png';
+  static const String changeSetting = '${_basePath}change-setting.png';
+  static const String googleLogo = '${_basePath}gLogo.svg';
+  static const String lock = '${_basePath}lock.svg';
+  static const String mail = '${_basePath}mail.svg';
+  static const String user = '${_basePath}user.svg';
+}
