@@ -1,4 +1,4 @@
-import 'package:evently/ui/screens/login/login_screen.dart';
+import 'package:evently/ui/screens/navigation/navigation_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,6 +10,9 @@ class Evently extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: LoginScreen());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: NavigationScreen(),
+    );
   }
 }

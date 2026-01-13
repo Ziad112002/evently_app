@@ -16,4 +16,10 @@ abstract final class AppAssets {
   static const String user = '${_basePath}user.svg';
   static const String visible = '${_basePath}eye-slash.svg';
   static const String evtLogo = '${_basePath}evently_logo.png';
+  static const String homeLogo = '${_basePath}home-2.png';
+  static const String favLogo = '${_basePath}heart.png';
+  static const String personLogo = '${_basePath}user.png';
+  static const String homeLogoFill = '${_basePath}homefill.png';
+  static const String personLogoFill = '${_basePath}userfill.png';
+  static const String favLogoFill = '${_basePath}heartfill.png';
 }

@@ -54,7 +54,7 @@ class LoginScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: (){
-                  Navigator.push(context, AppRoutes.forgotPasswordScreen);
+                  Navigator.push(context, AppRoutes.forgotPassword);
                 },
                 overlayColor: WidgetStatePropertyAll(Colors.transparent),
 
@@ -83,7 +83,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: (){
-                      Navigator.push(context, AppRoutes.signupScreen);
+                      Navigator.push(context, AppRoutes.signup);
                     },
                     child: Text(
                       "Signup",
