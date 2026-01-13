@@ -1,3 +1,4 @@
+import 'package:evently/ui/screens/forgotpass/forgot_password_screen.dart';
 import 'package:evently/ui/screens/login/login_screen.dart';
 import 'package:evently/ui/screens/signup/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,14 @@ abstract final class AppRoutes {
     return MaterialPageRoute(
       builder: (_) {
         return LoginScreen();
+      },
+    );
+  }
+
+  static MaterialPageRoute get forgotPasswordScreen {
+    return MaterialPageRoute(
+      builder: (_) {
+        return ForgotPasswordScreen();
       },
     );
   }

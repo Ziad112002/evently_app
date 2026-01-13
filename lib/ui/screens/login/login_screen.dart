@@ -6,7 +6,6 @@ import 'package:evently/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../widgets/custom_text_field.dart';
-import '../signup/signup_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -55,7 +54,10 @@ class LoginScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: (){
+                  Navigator.push(context, AppRoutes.forgotPasswordScreen);
                 },
+                overlayColor: WidgetStatePropertyAll(Colors.transparent),
+
                 child: Text(
                   "Forgot Password? ",
                   style: AppTextStyle.blue14semiBold.copyWith(
