@@ -11,7 +11,8 @@ abstract final class AppTextStyle {
     fontSize: 14,
     color: AppColors.blue,
     fontWeight: FontWeight.w600,
-  ); static const TextStyle blue14Regular = TextStyle(
+  );
+  static const TextStyle blue14Regular = TextStyle(
     fontSize: 14,
     color: AppColors.blue,
   );
@@ -33,10 +34,11 @@ abstract final class AppTextStyle {
   static const TextStyle darkGrey14Regular = TextStyle(
     fontSize: 14,
     color: AppColors.darkGrey,
-  );static const TextStyle grey16Medium = TextStyle(
+  );
+  static const TextStyle grey16Medium = TextStyle(
     fontSize: 16,
     color: AppColors.grey,
-    fontWeight: FontWeight.w500
+    fontWeight: FontWeight.w500,
   );
   static const TextStyle white20Medium = TextStyle(
     fontSize: 20,
@@ -57,7 +59,8 @@ abstract final class AppTextStyle {
     fontSize: 16,
     color: AppColors.black,
     fontWeight: FontWeight.w500,
-  ); static const TextStyle black16Regular = TextStyle(
+  );
+  static const TextStyle black16Regular = TextStyle(
     fontSize: 16,
     color: AppColors.black,
   );

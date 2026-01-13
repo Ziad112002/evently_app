@@ -10,8 +10,10 @@ abstract final class AppAssets {
   static const String meetingDark = '${_basePath}Meeting.png';
   static const String sport = '${_basePath}Sport.png';
   static const String changeSetting = '${_basePath}change-setting.png';
-  static const String googleLogo = '${_basePath}gLogo.svg';
+  static const String googleLogo = '${_basePath}google.png';
   static const String lock = '${_basePath}lock.svg';
   static const String mail = '${_basePath}mail.svg';
   static const String user = '${_basePath}user.svg';
+  static const String visible = '${_basePath}eye-slash.svg';
+  static const String evtLogo = '${_basePath}evently_logo.png';
 }
