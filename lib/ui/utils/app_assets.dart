@@ -11,10 +11,6 @@ abstract final class AppAssets {
   static const String sport = '${_basePath}Sport.png';
   static const String changeSetting = '${_basePath}change-setting.png';
   static const String googleLogo = '${_basePath}google.png';
-  static const String lock = '${_basePath}lock.svg';
-  static const String mail = '${_basePath}mail.svg';
-  static const String user = '${_basePath}user.svg';
-  static const String visible = '${_basePath}eye-slash.svg';
   static const String evtLogo = '${_basePath}evently_logo.png';
   static const String homeLogo = '${_basePath}home-2.png';
   static const String favLogo = '${_basePath}heart.png';
@@ -22,4 +18,7 @@ abstract final class AppAssets {
   static const String homeLogoFill = '${_basePath}homefill.png';
   static const String personLogoFill = '${_basePath}userfill.png';
   static const String favLogoFill = '${_basePath}heartfill.png';
+  static const String lockLogo = '${_basePath}lock.png';
+  static const String eyeLogo = '${_basePath}eye-slash.png';
+  static const String mailLogo = '${_basePath}sms.png';
 }

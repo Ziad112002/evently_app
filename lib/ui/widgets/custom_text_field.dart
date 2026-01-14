@@ -7,11 +7,13 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final bool  isObscure;
   const CustomTextField({
     super.key,
     required this.hintText,
     this.prefixIcon,
     this.suffixIcon,
+    this.isObscure=false
   });
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,7 @@ class CustomTextField extends StatelessWidget {
       borderSide: BorderSide(color: AppColors.lightGrey),
     );
     return TextFormField(
+      obscureText:isObscure,
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
