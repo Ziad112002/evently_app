@@ -35,6 +35,10 @@ abstract final class AppTextStyle {
     fontSize: 14,
     color: AppColors.darkGrey,
   );
+  static const TextStyle darkGrey16Regular = TextStyle(
+    fontSize: 16,
+    color: AppColors.darkGrey,
+  );
   static const TextStyle grey16Medium = TextStyle(
     fontSize: 16,
     color: AppColors.grey,
@@ -49,6 +53,11 @@ abstract final class AppTextStyle {
     fontSize: 16,
     color: AppColors.white,
     fontWeight: FontWeight.w500,
+  );
+  static const TextStyle white14semiBold = TextStyle(
+    fontSize: 14,
+    color: AppColors.white,
+    fontWeight: FontWeight.w600,
   );
   static const TextStyle black18Medium = TextStyle(
     fontSize: 18,

@@ -2,6 +2,7 @@ import 'package:evently/ui/utils/app_assets.dart';
 import 'package:evently/ui/utils/app_colors.dart';
 import 'package:evently/ui/utils/app_textStyle.dart';
 import 'package:evently/ui/widgets/custom_button.dart';
+import 'package:evently/ui/widgets/custom_container_button.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPasswordScreen extends StatelessWidget {
@@ -21,20 +22,13 @@ class ForgotPasswordScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  InkWell(
-                    onTap: () {
+                  CustomContainerButton(
+                    onClick: (){
                       Navigator.pop(context);
                     },
-                    child: Container(
-                      padding: EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Icon(
-                        Icons.arrow_back_ios_new,
-                        color: AppColors.blue,
-                      ),
+                    widget: Icon(
+                      Icons.arrow_back_ios_new,
+                      color: AppColors.blue,
                     ),
                   ),
                   SizedBox(
@@ -58,3 +52,4 @@ class ForgotPasswordScreen extends StatelessWidget {
     );
   }
 }
+

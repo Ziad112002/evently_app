@@ -1,5 +1,6 @@
 import 'package:evently/ui/screens/login/login_screen.dart';
 import 'package:evently/ui/screens/navigation/navigation_screen.dart';
+import 'package:evently/ui/screens/splash/start_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class Evently extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: NavigationScreen(),
     );
   }
 }

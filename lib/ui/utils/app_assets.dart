@@ -1,5 +1,9 @@
 abstract final class AppAssets {
   static const String _basePath = 'assets/images/';
+  static const String painting = '${_basePath}being-creative.png';
+  static const String trending = '${_basePath}hot-trending.png';
+  static const String planing = '${_basePath}manager-desk.png';
+  static const String social = '${_basePath}social.png';
   static const String bookClubLight = '${_basePath}Book Club-1.png';
   static const String bookClubDark = '${_basePath}Book Club.png';
   static const String exhibitionLight = '${_basePath}Exhibition-1.png';
@@ -8,7 +12,8 @@ abstract final class AppAssets {
   static const String birthdayDark = '${_basePath}Birthday.png';
   static const String meetingLight = '${_basePath}Meeting-1.png';
   static const String meetingDark = '${_basePath}Meeting.png';
-  static const String sport = '${_basePath}Sport.png';
+  static const String sportDark = '${_basePath}Sport.png';
+  static const String sportLight = '${_basePath}Sport-1.png';
   static const String changeSetting = '${_basePath}change-setting.png';
   static const String googleLogo = '${_basePath}google.png';
   static const String evtLogo = '${_basePath}evently_logo.png';
@@ -21,4 +26,5 @@ abstract final class AppAssets {
   static const String lockLogo = '${_basePath}lock.png';
   static const String eyeLogo = '${_basePath}eye-slash.png';
   static const String mailLogo = '${_basePath}sms.png';
+  static const String lightModeLogo = '${_basePath}sun.png';
 }
