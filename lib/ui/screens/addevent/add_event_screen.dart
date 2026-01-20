@@ -47,11 +47,11 @@ class _AddEventScreenState extends State<AddEventScreen> {
                         },
                       ),
                       SizedBox(height: 16),
-                      buildEventTextField(label: "Title", hint: "Event Title"),
+                      buildEventTextField( "Title",  "Event Title"),
                       SizedBox(height: 16),
                       buildEventTextField(
-                        label: "Description ",
-                        hint: "Event Description",
+                        "Description ",
+                        "Event Description",
                         minLine: 4,
                       ),
                       SizedBox(height: 16),
@@ -86,10 +86,10 @@ class _AddEventScreenState extends State<AddEventScreen> {
     );
   }
 
-  Widget buildEventTextField({
-    required String label,
-    required String hint,
-    int? minLine,
+  Widget buildEventTextField(
+     String label,
+     String hint,
+  { int? minLine,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,

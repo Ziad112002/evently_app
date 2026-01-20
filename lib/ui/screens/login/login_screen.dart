@@ -1,5 +1,6 @@
 import 'package:evently/ui/utils/app_assets.dart';
 import 'package:evently/ui/utils/app_colors.dart';
+import 'package:evently/ui/utils/app_dialogs.dart';
 import 'package:evently/ui/utils/app_routes.dart';
 import 'package:evently/ui/utils/app_textStyle.dart';
 import 'package:evently/ui/widgets/custom_button.dart';
@@ -72,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * .06),
-                CustomButton(text: "Login", onPress: () {}),
+                buildLoginButton(),
                 SizedBox(height: MediaQuery.of(context).size.height * .06),
                 Row(
                   mainAxisAlignment: .center,
@@ -120,6 +121,23 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-}
 
-//.06 .03 .02 .01 .06 .06 .04 .03
+  Widget buildLoginButton() {
+    return CustomButton(
+      text: "Login",
+      onPress: () async {
+        showLoading(context);
+        await Future.delayed(Duration(seconds: 1));
+        Navigator.pop(context);
+        showMessage(
+          context,
+          "Please! try again later",
+          title: "error!",
+          negText: "cancel",
+          posText: "ok",
+         
+        );
+      },
+    );
+  }
+}
