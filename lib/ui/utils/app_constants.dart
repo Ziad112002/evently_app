@@ -42,7 +42,6 @@ abstract final class AppConstants {
     exhibition,
   ];
   static List<CategoriesDM> categories = [
-    all,
     sport,
     bookingClub,
     birthday,

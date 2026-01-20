@@ -8,12 +8,14 @@ class CustomTextField extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final bool  isObscure;
+  final int minLine;
   const CustomTextField({
     super.key,
     required this.hintText,
     this.prefixIcon,
     this.suffixIcon,
-    this.isObscure=false
+    this.isObscure=false,
+    this.minLine=1
   });
   @override
   Widget build(BuildContext context) {
@@ -23,6 +25,8 @@ class CustomTextField extends StatelessWidget {
     );
     return TextFormField(
       obscureText:isObscure,
+      maxLines: minLine+1,
+      minLines: minLine,
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,

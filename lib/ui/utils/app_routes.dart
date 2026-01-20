@@ -1,3 +1,4 @@
+import 'package:evently/ui/screens/addevent/add_event_screen.dart';
 import 'package:evently/ui/screens/forgotpass/forgot_password_screen.dart';
 import 'package:evently/ui/screens/login/login_screen.dart';
 import 'package:evently/ui/screens/navigation/navigation_screen.dart';
@@ -51,6 +52,13 @@ abstract final class AppRoutes {
     return MaterialPageRoute(
       builder: (_) {
         return NavigationScreen();
+      },
+    );
+  }
+  static MaterialPageRoute get addEvent {
+    return MaterialPageRoute(
+      builder: (_) {
+        return AddEventScreen();
       },
     );
   }

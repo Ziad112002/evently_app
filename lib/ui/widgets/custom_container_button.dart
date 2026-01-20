@@ -5,11 +5,13 @@ class CustomContainerButton extends StatelessWidget {
   final VoidCallback? onClick;
   final Widget widget;
   final Color backGround;
+  final EdgeInsets padding;
   const CustomContainerButton({
     super.key,
     required this.onClick,
     required this.widget,
-    this.backGround=AppColors.white
+    this.backGround=AppColors.white,
+    this.padding=  const EdgeInsets.all(8)
   });
 
   @override
@@ -17,7 +19,8 @@ class CustomContainerButton extends StatelessWidget {
     return InkWell(
       onTap:onClick,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16,vertical: 5),
+
+        padding:padding,
         decoration: BoxDecoration(
           color: backGround,
           borderRadius: BorderRadius.circular(8),
