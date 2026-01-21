@@ -1,4 +1,4 @@
-import 'package:evently/event_dm.dart';
+import 'package:evently/ui/models/event_dm.dart';
 import 'package:evently/ui/utils/app_colors.dart';
 import 'package:evently/ui/utils/app_textStyle.dart';
 import 'package:flutter/material.dart';

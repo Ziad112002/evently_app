@@ -1,4 +1,4 @@
-import 'package:evently/event_dm.dart';
+import 'package:evently/ui/models/event_dm.dart';
 import 'package:evently/ui/utils/app_colors.dart';
 import 'package:evently/ui/utils/app_constants.dart';
 import 'package:evently/ui/utils/app_textstyle.dart';
@@ -77,7 +77,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
           onClick: () {
             Navigator.pop(context);
           },
-          widget: Icon(Icons.arrow_back_ios_new, color: AppColors.blue),
+          child: Icon(Icons.arrow_back_ios_new, color: AppColors.blue),
         ),
         Spacer(),
         Text("Add event", style: AppTextStyle.black18Medium),

@@ -1,3 +1,4 @@
+import 'package:evently/l10n/app_localizations.dart';
 import 'package:evently/ui/utils/app_assets.dart';
 import 'package:evently/ui/utils/app_colors.dart';
 import 'package:evently/ui/utils/app_textStyle.dart';
@@ -10,6 +11,7 @@ class ForgotPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var localization=AppLocalizations.of(context)!;
     return Scaffold(
       backgroundColor: AppColors.whiteBlue,
       body: SafeArea(
@@ -26,7 +28,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                     onClick: (){
                       Navigator.pop(context);
                     },
-                    widget: Icon(
+                    child: Icon(
                       Icons.arrow_back_ios_new,
                       color: AppColors.blue,
                     ),
@@ -34,7 +36,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width*.17,
                   ),
-                  Text("Forget Password",style: AppTextStyle.black18Medium,)
+                  Text(localization.forgetPassword,style: AppTextStyle.black18Medium,)
                 ],
               ),
               SizedBox(
@@ -44,7 +46,7 @@ class ForgotPasswordScreen extends StatelessWidget {
               SizedBox(
                 height: MediaQuery.of(context).size.height*.055,
               ),
-              CustomButton(text: "Reset password", onPress: () {}),
+              CustomButton(text: localization.resetPassword, onPress: () {}),
             ],
           ),
         ),

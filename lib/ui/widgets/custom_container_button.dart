@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 
 class CustomContainerButton extends StatelessWidget {
   final VoidCallback? onClick;
-  final Widget widget;
+  final Widget child;
   final Color backGround;
   final EdgeInsets padding;
   const CustomContainerButton({
     super.key,
     required this.onClick,
-    required this.widget,
+    required this.child,
     this.backGround=AppColors.white,
-    this.padding=  const EdgeInsets.all(8)
+    this.padding=  const EdgeInsets.all(4)
   });
 
   @override
@@ -25,7 +25,7 @@ class CustomContainerButton extends StatelessWidget {
           color: backGround,
           borderRadius: BorderRadius.circular(8),
         ),
-        child: widget,
+        child: child,
       ),
     );
   }

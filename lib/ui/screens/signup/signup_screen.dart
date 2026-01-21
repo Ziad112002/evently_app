@@ -1,3 +1,4 @@
+import 'package:evently/l10n/app_localizations.dart';
 import 'package:evently/ui/utils/app_assets.dart';
 import 'package:evently/ui/utils/app_colors.dart';
 import 'package:evently/ui/utils/app_textStyle.dart';
@@ -15,6 +16,7 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   bool isObscure = false;
   bool isObscure2 = false;
+  late var localization=AppLocalizations.of(context)!;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,20 +30,20 @@ class _SignupScreenState extends State<SignupScreen> {
               children: [
                 Image.asset(AppAssets.evtLogo),
                 SizedBox(height: MediaQuery.of(context).size.height * .06),
-                Text("Create your account", style: AppTextStyle.blue24semiBold),
+                Text(localization.createYourAccount, style: AppTextStyle.blue24semiBold),
                 SizedBox(height: MediaQuery.of(context).size.height * .03),
                 CustomTextField(
-                  hintText: "Enter your name",
+                  hintText: localization.enterYourName,
                   prefixIcon: Image.asset(AppAssets.personLogo),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * .02),
                 CustomTextField(
-                  hintText: "Enter your email",
+                  hintText: localization.emailHint,
                   prefixIcon: Image.asset(AppAssets.mailLogo),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * .02),
                 CustomTextField(
-                  hintText: "Enter your password",
+                  hintText: localization.passwordHint,
                   isObscure: isObscure,
                   prefixIcon: Image.asset(AppAssets.lockLogo),
                   suffixIcon: InkWell(
@@ -59,7 +61,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * .02),
                 CustomTextField(
-                  hintText: "Confirm your password",
+                  hintText: localization.confirmYourPassword,
                   isObscure: isObscure2,
                   prefixIcon: Image.asset(AppAssets.lockLogo),
                   suffixIcon: InkWell(
@@ -77,13 +79,13 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
 
                 SizedBox(height: MediaQuery.of(context).size.height * .06),
-                CustomButton(text: "Sign up", onPress: () {}),
+                CustomButton(text: localization.signup, onPress: () {}),
                 SizedBox(height: MediaQuery.of(context).size.height * .06),
                 Row(
                   mainAxisAlignment: .center,
                   children: [
                     Text(
-                      "Already have an account? ",
+                      localization.alreadyHaveAccount,
                       style: AppTextStyle.darkGrey14Regular,
                     ),
                     InkWell(
@@ -91,7 +93,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         Navigator.pop(context);
                       },
                       child: Text(
-                        "Login",
+                        localization.login,
                         style: AppTextStyle.blue14semiBold.copyWith(
                           decoration: TextDecoration.underline,
                           color: AppColors.blue,
@@ -102,14 +104,14 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * .04),
                 Text(
-                  "Or ",
+                  localization.orText,
                   style: AppTextStyle.blue16Medium,
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * .03),
                 CustomButton(
                   background: AppColors.white,
-                  text: "Sign up with Google",
+                  text: localization.signUpWithGoogle,
                   style: AppTextStyle.blue16Medium,
                   icon: Image.asset(
                     AppAssets.googleLogo,

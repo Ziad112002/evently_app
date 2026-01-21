@@ -1,4 +1,4 @@
-import 'package:evently/event_dm.dart';
+import 'package:evently/ui/models/event_dm.dart';
 import 'package:evently/ui/utils/app_assets.dart';
 import 'package:flutter/material.dart';
 
@@ -48,4 +48,6 @@ abstract final class AppConstants {
     meeting,
     exhibition,
   ];
+  static const String displayOnboarding="onBoarding";
+  static bool? showOnboarding;
 }

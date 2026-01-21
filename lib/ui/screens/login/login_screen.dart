@@ -1,3 +1,4 @@
+import 'package:evently/l10n/app_localizations.dart';
 import 'package:evently/ui/utils/app_assets.dart';
 import 'package:evently/ui/utils/app_colors.dart';
 import 'package:evently/ui/utils/app_dialogs.dart';
@@ -16,6 +17,8 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool isObscure = false;
+  late var localization=AppLocalizations.of(context)!;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,17 +33,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 Image.asset(AppAssets.evtLogo),
                 SizedBox(height: MediaQuery.of(context).size.height * .06),
                 Text(
-                  "Login to your account",
+                  localization.loginTitle,
                   style: AppTextStyle.blue24semiBold,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * .03),
                 CustomTextField(
-                  hintText: "Enter your email",
+                  hintText: localization.emailHint,
                   prefixIcon: Image.asset(AppAssets.mailLogo),
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * .02),
                 CustomTextField(
-                  hintText: "Enter your password",
+                  hintText:localization.passwordHint,
                   isObscure: isObscure,
                   prefixIcon: Image.asset(AppAssets.lockLogo),
                   suffixIcon: InkWell(
@@ -64,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   overlayColor: WidgetStatePropertyAll(Colors.transparent),
 
                   child: Text(
-                    "Forgot Password? ",
+                   localization.forgotPassword,
                     style: AppTextStyle.blue14semiBold.copyWith(
                       decoration: TextDecoration.underline,
                       color: AppColors.blue,
@@ -79,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: .center,
                   children: [
                     Text(
-                      "Don’t have an account ? ",
+                      localization.noAccount,
                       style: AppTextStyle.darkGrey14Regular,
                     ),
                     InkWell(
@@ -87,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(context, AppRoutes.signup);
                       },
                       child: Text(
-                        "Signup",
+                        localization.signup,
                         style: AppTextStyle.blue14semiBold.copyWith(
                           decoration: TextDecoration.underline,
                           color: AppColors.blue,
@@ -98,14 +101,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * .04),
                 Text(
-                  "Or ",
+                 localization.orText,
                   style: AppTextStyle.blue16Medium,
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height * .03),
                 CustomButton(
                   background: AppColors.white,
-                  text: "Login with Google",
+                  text: localization.googleLogin,
                   style: AppTextStyle.blue16Medium,
                   icon: Image.asset(
                     AppAssets.googleLogo,
@@ -124,17 +127,17 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget buildLoginButton() {
     return CustomButton(
-      text: "Login",
+      text:localization.loginButton ,
       onPress: () async {
         showLoading(context);
         await Future.delayed(Duration(seconds: 1));
         Navigator.pop(context);
         showMessage(
           context,
-          "Please! try again later",
-          title: "error!",
-          negText: "cancel",
-          posText: "ok",
+         localization.errorMessage,
+          title: localization.errorTitle,
+          negText: localization.dialogCancel,
+          posText: localization.dialogOk,
          
         );
       },

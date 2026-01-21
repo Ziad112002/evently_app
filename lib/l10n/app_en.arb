@@ -1,0 +1,44 @@
+{
+  "loginTitle": "Login to your account",
+  "emailHint": "Enter your email",
+  "passwordHint": "Enter your password",
+  "forgotPassword": "Forgot Password?",
+  "loginButton": "Login",
+  "noAccount": "Don’t have an account?",
+  "signup": "Signup",
+  "orText": "Or",
+  "googleLogin": "Login with Google",
+
+  "errorTitle": "Error!",
+  "errorMessage": "Please! try again later",
+  "dialogCancel": "Cancel",
+  "dialogOk": "OK",
+  "createYourAccount": "Create your account",
+  "enterYourName": "Enter your name",
+  "confirmYourPassword": "Confirm your password",
+  "signUpWithGoogle": "Sign up with Google",
+  "alreadyHaveAccount": "Already have an account? ",
+  "login": "Login",
+
+  "forgetPassword": "Forget Password",
+  "resetPassword": "Reset password",
+  "onboardingFindTitle": "Find Events That Inspire You",
+  "onboardingFindDesc": "Dive into a world of events crafted to fit your unique interests. Whether you're into live music, art workshops, professional networking, or simply discovering new experiences, we have something for everyone. Our curated recommendations will help you explore, connect, and make the most of every opportunity around you.",
+
+  "onboardingManageTitle": "Effortless Event Planning",
+  "onboardingManageDesc": "Take the hassle out of organizing events with our all-in-one planning tools. From setting up invites and managing RSVPs to scheduling reminders and coordinating details, we’ve got you covered. Plan with ease and focus on what matters – creating an unforgettable experience for you and your guests.",
+
+  "onboardingConnectTitle": "Connect with Friends & Share Moments",
+  "onboardingConnectDesc": "Make every event memorable by sharing the experience with others. Our platform lets you invite friends, keep everyone in the loop, and celebrate moments together. Capture and share the excitement with your network, so you can relive the highlights and cherish the memories.",
+  "personalizeYourExperience": "Personalize Your Experience",
+  "choosePreferredThemeAndLanguage": "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.",
+  "language": "Language",
+  "english": "English",
+  "arabic": "Arabic",
+  "theme": "Theme",
+  "letsStart": "Let's start",
+  "skip": "Skip",
+  "next": "Next",
+  "getStarted": "Get started"
+
+}
