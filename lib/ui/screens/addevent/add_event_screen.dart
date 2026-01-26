@@ -19,6 +19,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
   CategoriesDM selectedCategory = AppConstants.categories[0];
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
+  TextEditingController titleCtrl = TextEditingController();
+  TextEditingController descCtrl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,9 +49,10 @@ class _AddEventScreenState extends State<AddEventScreen> {
                         },
                       ),
                       SizedBox(height: 16),
-                      buildEventTextField( "Title",  "Event Title"),
+                      buildEventTextField(titleCtrl, "Title", "Event Title"),
                       SizedBox(height: 16),
                       buildEventTextField(
+                        descCtrl,
                         "Description ",
                         "Event Description",
                         minLine: 4,
@@ -61,7 +64,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
                   ),
                 ),
               ),
-              buildAddEventButton()
+              buildAddEventButton(),
             ],
           ),
         ),
@@ -87,16 +90,21 @@ class _AddEventScreenState extends State<AddEventScreen> {
   }
 
   Widget buildEventTextField(
-     String label,
-     String hint,
-  { int? minLine,
+    TextEditingController ctrl,
+    String label,
+    String hint, {
+    int? minLine,
   }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(label, style: AppTextStyle.black16Medium),
         SizedBox(height: 8),
-        CustomTextField(hintText: hint, minLine: minLine ?? 1),
+        CustomTextField(
+          controller: ctrl,
+          hintText: hint,
+          minLine: minLine ?? 1,
+        ),
       ],
     );
   }
@@ -160,9 +168,19 @@ class _AddEventScreenState extends State<AddEventScreen> {
       ],
     );
   }
-  Widget buildAddEventButton(){
-    return CustomButton(text: "Add Event", onPress: (){
 
-    });
+  Widget buildAddEventButton() {
+    return CustomButton(
+      text: "Add Event",
+      onPress: () {
+        EventDm eventDm = EventDm(
+          ownerID: "",
+          categoriesDM: selectedCategory,
+          date: selectedDate,
+          title: titleCtrl.text,
+          desc: descCtrl.text,
+        );
+      },
+    );
   }
 }

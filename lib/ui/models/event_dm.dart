@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 
 class EventDm {
   CategoriesDM categoriesDM;
+  String ownerID;
   DateTime date;
   String title;
   String desc;
-  bool isFavorite;
   EventDm({
+    required this.ownerID,
     required this.categoriesDM,
     required this.date,
     required this.title,
     required this.desc,
-    required this.isFavorite,
   });
 }
 

@@ -15,6 +15,7 @@ class EventWidget extends StatefulWidget {
 }
 
 class _EventWidgetState extends State<EventWidget> {
+   bool isFavorite=false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -70,14 +71,14 @@ class _EventWidgetState extends State<EventWidget> {
           ),
           IconButton(
             onPressed: () {
-              widget.event.isFavorite = !widget.event.isFavorite;
+             isFavorite = !isFavorite;
               setState(() {
 
               });
             },
             icon: ImageIcon(
               AssetImage(
-                widget.event.isFavorite
+              isFavorite
                     ? AppAssets.favLogoFill
                     : AppAssets.favLogo,
               ),

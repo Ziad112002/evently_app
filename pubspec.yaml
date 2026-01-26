@@ -23,7 +23,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-#  flutter_native_splash: ^2.4.7
+  flutter_native_splash: ^2.4.7
+  firebase_core: ^4.4.0
+  firebase_auth: ^6.1.4
+  cloud_firestore: ^6.1.2
 
 dev_dependencies:
   flutter_test:
@@ -31,15 +34,17 @@ dev_dependencies:
 
   flutter_lints: ^6.0.0
 
-#flutter_native_splash:
-#  color: "#F4F7FF"
-#  image: assets/images/Evently.png
-#  android: true
-#  ios: true
-#  web: false
-#  android_12:
-#    image: assets/images/EventlyAndroid_12.png
-#    icon_background_color: "#F4F7FF"
+flutter_native_splash:
+  color: "#F4F7FF"
+  image: assets/images/Evently.png
+  branding: assets/images/route.png
+  android: true
+  ios: true
+  web: false
+  android_12:
+    image: assets/images/evently_splash2.png
+    icon_background_color: "#F4F7FF"
+    branding: assets/images/route.png
 
 
 

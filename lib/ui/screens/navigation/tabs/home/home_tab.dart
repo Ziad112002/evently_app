@@ -1,4 +1,5 @@
 import 'package:evently/ui/models/event_dm.dart';
+import 'package:evently/ui/models/user_dm.dart';
 import 'package:evently/ui/utils/app_assets.dart';
 import 'package:evently/ui/utils/app_colors.dart';
 import 'package:evently/ui/utils/app_constants.dart';
@@ -33,7 +34,7 @@ class HomeTab extends StatelessWidget {
               style: AppTextStyle.darkGrey14Regular,
               textAlign: TextAlign.start,
             ),
-            Text("Ziad Hammad", style: AppTextStyle.black20Medium),
+            Text(UserDm.currentUser!.name, style: AppTextStyle.black20Medium),
           ],
         ),
         Spacer(),
@@ -70,11 +71,11 @@ class HomeTab extends StatelessWidget {
             icon: Icon(Icons.menu_book_outlined),
           );
           EventDm event = EventDm(
+            ownerID: "",
             categoriesDM: category,
             date: DateTime.now(),
             title: "This is a Birthday Party  ",
             desc: "Meeting for Updating The Development Method ",
-            isFavorite: false,
           );
           return EventWidget(event: event);
         },

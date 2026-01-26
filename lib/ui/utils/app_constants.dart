@@ -3,6 +3,7 @@ import 'package:evently/ui/utils/app_assets.dart';
 import 'package:flutter/material.dart';
 
 abstract final class AppConstants {
+ static String defaultErrorMessage="Something went wrong, please try again later!";
   static CategoriesDM all = CategoriesDM(
     imagePath: "",
     name: "All",
