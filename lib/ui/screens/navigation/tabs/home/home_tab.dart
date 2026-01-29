@@ -1,3 +1,4 @@
+import 'package:evently/firebase_utils/firebase_utility.dart';
 import 'package:evently/ui/models/event_dm.dart';
 import 'package:evently/ui/models/user_dm.dart';
 import 'package:evently/ui/utils/app_assets.dart';
@@ -8,8 +9,22 @@ import 'package:evently/ui/widgets/categories_tab_bar.dart';
 import 'package:evently/ui/widgets/event_widget.dart';
 import 'package:flutter/material.dart';
 
-class HomeTab extends StatelessWidget {
+class HomeTab extends StatefulWidget {
   const HomeTab({super.key});
+
+  @override
+  State<HomeTab> createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab> {
+  List<EventDm> events = [];
+  List<EventDm> filteredEvents = [];
+  CategoriesDM selectedCategory = AppConstants.allCategories[0];
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   loadData();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +32,38 @@ class HomeTab extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
-          children: [buildHeader(), buildCategoriesTabBar(), buildEventList()],
+          children: [
+            buildHeader(),
+            StreamBuilder(
+              stream: getEventsFromFireStore(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  events = snapshot.data!;
+                  categoryEvent();
+                  return Expanded(
+                    child: Column(
+                      children: [buildCategoriesTabBar(), buildEventList()],
+                    ),
+                  );
+                } else if (snapshot.hasError) {
+                  return Column(
+                      mainAxisAlignment: .center,
+                      children: [Text(
+                      "Error! ${snapshot.error}",
+                      style: AppTextStyle.blue24semiBold,
+                    ),]
+                  );
+                } else {
+                  return Expanded(
+                    child: Column(
+                      mainAxisAlignment: .center,
+                      children: [CircularProgressIndicator()],
+                    ),
+                  );
+                }
+              },
+            ),
+          ],
         ),
       ),
     );
@@ -54,8 +100,10 @@ class HomeTab extends StatelessWidget {
 
   Widget buildCategoriesTabBar() {
     return CategoriesTabBar(
-      categories: AppConstants.categories,
+      categories: AppConstants.allCategories,
       onChanged: (category) {
+        selectedCategory = category;
+        setState(() {});
       },
     );
   }
@@ -63,23 +111,21 @@ class HomeTab extends StatelessWidget {
   Widget buildEventList() {
     return Expanded(
       child: ListView.builder(
-        itemCount: 10,
+        itemCount: filteredEvents.length,
         itemBuilder: (context, index) {
-          CategoriesDM category = CategoriesDM(
-            imagePath: AppAssets.bookClubLight,
-            name: "Reading Book",
-            icon: Icon(Icons.menu_book_outlined),
-          );
-          EventDm event = EventDm(
-            ownerID: "",
-            categoriesDM: category,
-            date: DateTime.now(),
-            title: "This is a Birthday Party  ",
-            desc: "Meeting for Updating The Development Method ",
-          );
-          return EventWidget(event: event);
+          return EventWidget(event: filteredEvents[index]);
         },
       ),
     );
+  }
+
+  void categoryEvent() {
+    if (selectedCategory != AppConstants.all) {
+      filteredEvents = events.where((event) {
+        return event.category.name == selectedCategory.name;
+      }).toList();
+    } else {
+      filteredEvents = events;
+    }
   }
 }

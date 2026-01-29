@@ -26,7 +26,7 @@ class _EventWidgetState extends State<EventWidget> {
         borderRadius: BorderRadius.circular(16),
         border: BoxBorder.all(color: AppColors.lightGrey, width: 1),
         image: DecorationImage(
-          image: AssetImage(widget.event.categoriesDM.imagePath),
+          image: AssetImage(widget.event.category.imagePath),
           fit: BoxFit.cover,
         ),
       ),
@@ -39,7 +39,7 @@ class _EventWidgetState extends State<EventWidget> {
   }
 
   Widget buildContainerDate() {
-    String format = DateFormat('dd MMM').format(widget.event.date);
+    String format = DateFormat('dd MMM').format(widget.event.dateTime);
     return Container(
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(

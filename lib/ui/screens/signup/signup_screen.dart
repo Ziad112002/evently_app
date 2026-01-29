@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:evently/firebase_utils/firebase_utility.dart';
 import 'package:evently/l10n/app_localizations.dart';
 import 'package:evently/ui/models/user_dm.dart';
 import 'package:evently/ui/utils/app_assets.dart';
@@ -140,17 +141,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * .03),
-                  CustomButton(
-                    background: AppColors.white,
-                    text: localization.signUpWithGoogle,
-                    style: AppTextStyle.blue16Medium,
-                    icon: Image.asset(
-                      AppAssets.googleLogo,
-                      height: 24,
-                      width: 24,
-                    ),
-                    onPress: () {},
-                  ),
+                  buildSignupGoogleButton(),
                 ],
               ),
             ),
@@ -159,6 +150,7 @@ class _SignupScreenState extends State<SignupScreen> {
       ),
     );
   }
+
 
   CustomButton buildSignupButton() {
     return CustomButton(
@@ -199,16 +191,29 @@ class _SignupScreenState extends State<SignupScreen> {
       },
     );
   }
+  CustomButton buildSignupGoogleButton() {
+    return CustomButton(
+      background: AppColors.white,
+      text: localization.signUpWithGoogle,
+      style: AppTextStyle.blue16Medium,
+      icon: Image.asset(
+        AppAssets.googleLogo,
+        height: 24,
+        width: 24,
+      ),
+      onPress: ()async{
+        try {
+          final credential=await signInWithGoogle();
+          UserDm.currentUser=credential;
+          await createUserInFirestore(credential);
+          Navigator.push(context, AppRoutes.navigation);
+        } on Exception catch (e) {
+          String message="$e";
+          showMessage(context, message,title: "Error!",posText: "OK");
 
-  Future<void> createUserInFirestore(UserDm user) async {
-    var userCollection = FirebaseFirestore.instance.collection("users");
-    var document = userCollection.doc(user.id);
-    document.set({
-      "id": user.id,
-      "name": user.name,
-      "email": user.email,
-      "favorites": user.favoriteEvents,
-    });
+        }
+      },
+    );
   }
   String? validateEmail(String? value) {
      final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');

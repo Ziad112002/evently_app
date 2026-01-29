@@ -51,7 +51,7 @@ class _CategoriesTabBarState extends State<CategoriesTabBar> {
       child: Row(
         mainAxisAlignment: .center,
         children: [
-          category.icon,
+          Icon(category.icon),
           SizedBox(width: 8),
           Text(
             category.name,

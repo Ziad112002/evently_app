@@ -95,7 +95,8 @@ class _StartScreenState extends State<StartScreen> {
                   setState(() {});
                 },
               ),
-                Spacer(),
+              SizedBox(height: MediaQuery.of(context).size.height * .03),
+
               CustomButton(
                 text: localization.letsStart,
                 onPress: () {

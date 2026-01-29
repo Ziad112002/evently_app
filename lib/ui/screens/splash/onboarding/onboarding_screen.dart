@@ -66,7 +66,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   },
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * .02),
+              SizedBox(height: MediaQuery.of(context).size.height * .01),
               Center(child: buildSmoothPageIndicator()),
               SizedBox(height: MediaQuery.of(context).size.height * .02),
               Text(
@@ -80,7 +80,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 style: AppTextStyle.darkGrey16Regular,
                 textAlign: TextAlign.start,
               ),
-              Spacer(),
+              SizedBox(height: MediaQuery.of(context).size.height * .02),
               CustomButton(
                 text: currentIndex == 2 ? localization.getStarted : localization.next,
                 onPress: () async{

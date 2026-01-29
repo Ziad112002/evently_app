@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:evently/firebase_utils/firebase_utility.dart';
 import 'package:evently/l10n/app_localizations.dart';
 import 'package:evently/ui/models/user_dm.dart';
 import 'package:evently/ui/utils/app_assets.dart';
@@ -129,17 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * .03),
-                  CustomButton(
-                    background: AppColors.white,
-                    text: localization.googleLogin,
-                    style: AppTextStyle.blue16Medium,
-                    icon: Image.asset(
-                      AppAssets.googleLogo,
-                      height: 24,
-                      width: 24,
-                    ),
-                    onPress: () {},
-                  ),
+                  buildGoogleLoginButton(),
                 ],
               ),
             ),
@@ -148,6 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
 
   Widget buildLoginButton() {
     return CustomButton(
@@ -179,12 +170,31 @@ class _LoginScreenState extends State<LoginScreen> {
       },
     );
   }
+  CustomButton buildGoogleLoginButton() {
+    return CustomButton(
+      background: AppColors.white,
+      text: localization.googleLogin,
+      style: AppTextStyle.blue16Medium,
+      icon: Image.asset(
+        AppAssets.googleLogo,
+        height: 18,
+        width: 18,
+      ),
+      onPress: () async{
+         try {
+           final credential=await signInWithGoogle();
+           UserDm.currentUser=credential;
+                   await createUserInFirestore(credential);
+           Navigator.push(context, AppRoutes.navigation);
+         } on Exception catch (e) {
+           String message="$e";
+           showMessage(context, message,title: "Error!",posText: "OK");
 
-Future<UserDm>getUserFromFireStore(String uid)async{
-    var userCollection=FirebaseFirestore.instance.collection("users");
-    DocumentSnapshot snapshot= await userCollection.doc(uid).get();
-    Map json=snapshot.data()as Map;
-    UserDm user =UserDm(id: uid, name:json["name"] , email: emailCtrl.text);
-    return user;
-}
+         }
+      },
+    );
+  }
+
+
+
 }
