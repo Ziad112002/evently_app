@@ -77,6 +77,9 @@ abstract final class AppTextStyle {
     fontSize: 14,
     color: AppColors.black,
     fontWeight: FontWeight.w500,
+  ); static const TextStyle black14Regular = TextStyle(
+    fontSize: 14,
+    color: AppColors.black,
   );
   static const TextStyle black20Medium = TextStyle(
     fontSize: 20,

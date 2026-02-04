@@ -57,14 +57,14 @@ class _SignupScreenState extends State<SignupScreen> {
                     },
                     controller: nameCtrl,
                     hintText: localization.enterYourName,
-                    prefixIcon: Image.asset(AppAssets.personLogo),
+                    prefixIcon: Image.asset(AppAssets.personIcon),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * .02),
                   CustomTextField(
                     validator: validateEmail,
                     controller: emailCtrl,
                     hintText: localization.emailHint,
-                    prefixIcon: Image.asset(AppAssets.mailLogo),
+                    prefixIcon: Image.asset(AppAssets.mailIcon),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * .02),
                   CustomTextField(
@@ -72,7 +72,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     controller: passwordCtrl,
                     hintText: localization.passwordHint,
                     isObscure: isObscure,
-                    prefixIcon: Image.asset(AppAssets.lockLogo),
+                    prefixIcon: Image.asset(AppAssets.lockIcon),
                     suffixIcon: InkWell(
                       onTap: () {
                         isObscure = !isObscure;
@@ -83,7 +83,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               Icons.remove_red_eye_outlined,
                               color: AppColors.grey,
                             )
-                          : Image.asset(AppAssets.eyeLogo),
+                          : Image.asset(AppAssets.eyeIcon),
                     ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * .02),
@@ -96,7 +96,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     },
                     hintText: localization.confirmYourPassword,
                     isObscure: isObscure2,
-                    prefixIcon: Image.asset(AppAssets.lockLogo),
+                    prefixIcon: Image.asset(AppAssets.lockIcon),
                     suffixIcon: InkWell(
                       onTap: () {
                         isObscure2 = !isObscure2;
@@ -107,7 +107,7 @@ class _SignupScreenState extends State<SignupScreen> {
                               Icons.remove_red_eye_outlined,
                               color: AppColors.grey,
                             )
-                          : Image.asset(AppAssets.eyeLogo),
+                          : Image.asset(AppAssets.eyeIcon),
                     ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * .06),
@@ -197,7 +197,7 @@ class _SignupScreenState extends State<SignupScreen> {
       text: localization.signUpWithGoogle,
       style: AppTextStyle.blue16Medium,
       icon: Image.asset(
-        AppAssets.googleLogo,
+        AppAssets.googleIcon,
         height: 24,
         width: 24,
       ),

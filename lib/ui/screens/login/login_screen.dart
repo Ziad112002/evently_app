@@ -55,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     controller: emailCtrl,
                     hintText: localization.emailHint,
-                    prefixIcon: Image.asset(AppAssets.mailLogo),
+                    prefixIcon: Image.asset(AppAssets.mailIcon),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * .02),
                   CustomTextField(
@@ -68,7 +68,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     controller: passwordCtrl,
                     hintText: localization.passwordHint,
                     isObscure: isObscure,
-                    prefixIcon: Image.asset(AppAssets.lockLogo),
+                    prefixIcon: Image.asset(AppAssets.lockIcon),
                     suffixIcon: InkWell(
                       onTap: () {
                         isObscure = !isObscure;
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Icons.remove_red_eye_outlined,
                               color: AppColors.grey,
                             )
-                          : Image.asset(AppAssets.eyeLogo),
+                          : Image.asset(AppAssets.eyeIcon),
                     ),
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * .01),
@@ -176,7 +176,7 @@ class _LoginScreenState extends State<LoginScreen> {
       text: localization.googleLogin,
       style: AppTextStyle.blue16Medium,
       icon: Image.asset(
-        AppAssets.googleLogo,
+        AppAssets.googleIcon,
         height: 18,
         width: 18,
       ),

@@ -1,4 +1,6 @@
+import 'package:evently/firebase_utils/firebase_utility.dart';
 import 'package:evently/ui/models/event_dm.dart';
+import 'package:evently/ui/models/user_dm.dart';
 import 'package:evently/ui/utils/app_colors.dart';
 import 'package:evently/ui/utils/app_textStyle.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,8 @@ import '../utils/app_assets.dart';
 
 class EventWidget extends StatefulWidget {
   final EventDm event;
-  const EventWidget({super.key, required this.event});
+  final   void Function()? onTap;
+  const EventWidget({super.key, required this.event,required this.onTap});
 
   @override
   State<EventWidget> createState() => _EventWidgetState();
@@ -18,22 +21,25 @@ class _EventWidgetState extends State<EventWidget> {
    bool isFavorite=false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * .25,
-      padding: EdgeInsets.all(8),
-      margin: EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        border: BoxBorder.all(color: AppColors.lightGrey, width: 1),
-        image: DecorationImage(
-          image: AssetImage(widget.event.category.imagePath),
-          fit: BoxFit.cover,
+    return InkWell(
+      onTap:widget.onTap ,
+      child: Container(
+        height: MediaQuery.of(context).size.height * .25,
+        padding: EdgeInsets.all(8),
+        margin: EdgeInsets.symmetric(vertical: 8),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          border: BoxBorder.all(color: AppColors.lightGrey, width: 1),
+          image: DecorationImage(
+            image: AssetImage(widget.event.category.imagePath),
+            fit: BoxFit.cover,
+          ),
         ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [buildContainerDate(), buildDescContainer()],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [buildContainerDate(), buildDescContainer()],
+        ),
       ),
     );
   }
@@ -71,16 +77,20 @@ class _EventWidgetState extends State<EventWidget> {
           ),
           IconButton(
             onPressed: () {
-             isFavorite = !isFavorite;
-              setState(() {
+             if ( UserDm.currentUser!.favoriteEvents.contains(widget.event.eventID)) {
+             removeEventFromFavourite(widget.event.eventID, UserDm.currentUser!);
+             }else{
+               addEventToFavourite(widget.event.eventID,UserDm.currentUser! );
+             }
+      setState(() {
 
-              });
+      });
             },
             icon: ImageIcon(
               AssetImage(
-              isFavorite
-                    ? AppAssets.favLogoFill
-                    : AppAssets.favLogo,
+                UserDm.currentUser!.favoriteEvents.contains(widget.event.eventID)
+                    ? AppAssets.favIconFill
+                    : AppAssets.favIcon,
               ),
             ),
           ),

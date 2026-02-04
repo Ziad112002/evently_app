@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 
 class EventDm {
+  static EventDm? currentEvent;
   CategoriesDM category;
   String eventID;
   String ownerID;

@@ -4,6 +4,7 @@ import 'package:evently/ui/models/user_dm.dart';
 import 'package:evently/ui/utils/app_assets.dart';
 import 'package:evently/ui/utils/app_colors.dart';
 import 'package:evently/ui/utils/app_constants.dart';
+import 'package:evently/ui/utils/app_routes.dart';
 import 'package:evently/ui/utils/app_textstyle.dart';
 import 'package:evently/ui/widgets/categories_tab_bar.dart';
 import 'package:evently/ui/widgets/event_widget.dart';
@@ -84,7 +85,7 @@ class _HomeTabState extends State<HomeTab> {
           ],
         ),
         Spacer(),
-        ImageIcon(AssetImage(AppAssets.lightModeLogo), color: AppColors.blue),
+        ImageIcon(AssetImage(AppAssets.lightModeIcon), color: AppColors.blue),
         SizedBox(width: 8),
         Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 5.5),
@@ -113,7 +114,11 @@ class _HomeTabState extends State<HomeTab> {
       child: ListView.builder(
         itemCount: filteredEvents.length,
         itemBuilder: (context, index) {
-          return EventWidget(event: filteredEvents[index]);
+          return EventWidget(event: filteredEvents[index],onTap: (){
+            EventDm.currentEvent=filteredEvents[index];
+
+            Navigator.push(context, AppRoutes.eventDetails);
+          },);
         },
       ),
     );

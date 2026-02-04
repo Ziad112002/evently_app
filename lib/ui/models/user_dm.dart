@@ -3,7 +3,7 @@ class UserDm {
   String id;
   String email;
   String name;
-  List favoriteEvents;
+  List<String> favoriteEvents;
   UserDm({
     required this.id,
     required this.name,
@@ -20,11 +20,12 @@ class UserDm {
   }
 
   static UserDm fromJson(Map<String, dynamic> json) {
+    List<dynamic> favorites= json["favorites"];
     return UserDm(
       id: json["id"],
       name: json["name"],
       email: json["email"],
-      favoriteEvents: json["favorites"],
+      favoriteEvents: favorites.map((id)=>id.toString()).toList(),
     );
   }
 }

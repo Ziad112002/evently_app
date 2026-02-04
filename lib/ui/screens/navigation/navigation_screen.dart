@@ -61,20 +61,20 @@ class _NavigationScreenState extends State<NavigationScreen> {
             buildBottomNavigationBarItem(
               "Home",
               selectedIndex == 0
-                  ? ImageIcon(AssetImage(AppAssets.homeLogoFill))
-                  : ImageIcon(AssetImage(AppAssets.homeLogo)),
+                  ? ImageIcon(AssetImage(AppAssets.homeIconFill))
+                  : ImageIcon(AssetImage(AppAssets.homeIcon)),
             ),
             buildBottomNavigationBarItem(
               "Favorite",
               selectedIndex == 1
-                  ? ImageIcon(AssetImage(AppAssets.favLogoFill))
-                  : ImageIcon(AssetImage(AppAssets.favLogo)),
+                  ? ImageIcon(AssetImage(AppAssets.favIconFill))
+                  : ImageIcon(AssetImage(AppAssets.favIcon)),
             ),
             buildBottomNavigationBarItem(
               "Profile",
               selectedIndex == 2
-                  ? ImageIcon(AssetImage(AppAssets.personLogoFill))
-                  : ImageIcon(AssetImage(AppAssets.personLogo)),
+                  ? ImageIcon(AssetImage(AppAssets.personIconFill))
+                  : ImageIcon(AssetImage(AppAssets.personIcon)),
             ),
           ],
         ),

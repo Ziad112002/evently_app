@@ -1,4 +1,6 @@
 import 'package:evently/ui/screens/addevent/add_event_screen.dart';
+import 'package:evently/ui/screens/edit%20event/edit_event_screens.dart';
+import 'package:evently/ui/screens/event%20details/event_details_screen.dart';
 import 'package:evently/ui/screens/forgotpass/forgot_password_screen.dart';
 import 'package:evently/ui/screens/login/login_screen.dart';
 import 'package:evently/ui/screens/navigation/navigation_screen.dart';
@@ -61,5 +63,18 @@ abstract final class AppRoutes {
         return AddEventScreen();
       },
     );
+  }
+  static MaterialPageRoute get eventDetails {
+    return MaterialPageRoute(
+        builder: (_) {
+          return EventDetailsScreen();
+        }
+      );
+  } static MaterialPageRoute get editEvent {
+    return MaterialPageRoute(
+        builder: (_) {
+          return EditEventScreen();
+        }
+      );
   }
 }

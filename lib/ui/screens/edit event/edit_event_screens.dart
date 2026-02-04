@@ -10,21 +10,21 @@ import 'package:evently/ui/widgets/custom_button.dart';
 import 'package:evently/ui/widgets/custom_container_button.dart';
 import 'package:evently/ui/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class AddEventScreen extends StatefulWidget {
-  const AddEventScreen({super.key});
+class EditEventScreen extends StatefulWidget {
+  const EditEventScreen({super.key});
 
   @override
-  State<AddEventScreen> createState() => _AddEventScreenState();
+  State<EditEventScreen> createState() => _EditEventScreenState();
 }
 
-class _AddEventScreenState extends State<AddEventScreen> {
-  CategoriesDM selectedCategory = AppConstants.categories[0];
-  DateTime selectedDate = DateTime.now();
-  TimeOfDay selectedTime = TimeOfDay.now();
+class _EditEventScreenState extends State<EditEventScreen> {
+  CategoriesDM selectedCategory = EventDm.currentEvent!.category;
+  DateTime selectedDate = EventDm.currentEvent!.dateTime;
+ late TimeOfDay selectedTime = TimeOfDay(hour: selectedDate.hour,minute: selectedDate.minute);
   TextEditingController titleCtrl = TextEditingController();
   TextEditingController descCtrl = TextEditingController();
-  var key=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,49 +32,46 @@ class _AddEventScreenState extends State<AddEventScreen> {
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16,),
-          child: Form(
-            key: key,
-            child: Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        buildHeader(),
-                        SizedBox(height: MediaQuery.of(context).size.height*.019),
-                        Image.asset(
-                          selectedCategory.imagePath,
-                          height: MediaQuery.of(context).size.height * .25,
-                        ),
-                        SizedBox(height: MediaQuery.of(context).size.height*.019),
-                        CategoriesTabBar(
-                          categories: AppConstants.categories,
-                          onChanged: (category) {
-                            selectedCategory = category;
-                            setState(() {});
-                          },
-                        ),
-                        SizedBox(height: MediaQuery.of(context).size.height*.019),
-                        buildEventTextField(titleCtrl, "Title", "Event Title"),
-                        SizedBox(height: MediaQuery.of(context).size.height*.019),
-                        buildEventTextField(
-                          descCtrl,
-                          "Description ",
-                          "Event Description",
-                          minLine: 4,
-                        ),
-                        SizedBox(height: MediaQuery.of(context).size.height*.019),
-                        buildChooseDate(),
-                        buildChooseTime(),
-                      ],
-                    ),
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      buildHeader(),
+                      SizedBox(height: MediaQuery.of(context).size.height*.019),
+                      Image.asset(
+                        selectedCategory.imagePath,
+                        height: MediaQuery.of(context).size.height * .25,
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height*.019),
+                      CategoriesTabBar(
+                        categories: AppConstants.categories,
+                        onChanged: (category) {
+                          selectedCategory = category;
+                          setState(() {});
+                        },
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height*.019),
+                      buildEventTextField(titleCtrl, "Title", EventDm.currentEvent!.title),
+                      SizedBox(height: MediaQuery.of(context).size.height*.019),
+                      buildEventTextField(
+                        descCtrl,
+                        "Description ",
+                        EventDm.currentEvent!.desc,
+                        minLine: 4,
+                      ),
+                      SizedBox(height: MediaQuery.of(context).size.height*.019),
+                      buildChooseDate(),
+                      buildChooseTime(),
+                    ],
                   ),
                 ),
-                buildAddEventButton(),
-                SizedBox(height: MediaQuery.of(context).size.height*.019),
+              ),
+              buildEditEventButton(),
+              SizedBox(height: MediaQuery.of(context).size.height*.019),
 
-              ],
-            ),
+            ],
           ),
         ),
       ),
@@ -92,18 +89,18 @@ class _AddEventScreenState extends State<AddEventScreen> {
           child: Icon(Icons.arrow_back_ios_new, color: AppColors.blue),
         ),
         Spacer(),
-        Text("Add event", style: AppTextStyle.black18Medium),
+        Text("Edit event", style: AppTextStyle.black18Medium),
         Spacer(),
       ],
     );
   }
 
   Widget buildEventTextField(
-    TextEditingController ctrl,
-    String label,
-    String hint, {
-    int? minLine,
-  }) {
+      TextEditingController ctrl,
+      String label,
+      String hint, {
+        int? minLine,
+      }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -111,12 +108,6 @@ class _AddEventScreenState extends State<AddEventScreen> {
         SizedBox(height: MediaQuery.of(context).size.height*.009),
         CustomTextField(
           controller: ctrl,
-          validator: (text){
-            if(text==null||text.isEmpty){
-              return "please, Complete your event information";
-            }
-            return null;
-          },
           hintText: hint,
           minLine: minLine ?? 1,
         ),
@@ -125,6 +116,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
   }
 
   Widget buildChooseDate() {
+
+    String dateFormat = DateFormat('MMM d, yyyy').format(selectedDate);
     return Row(
       children: [
         Icon(Icons.calendar_month_outlined, color: AppColors.blue),
@@ -141,11 +134,11 @@ class _AddEventScreenState extends State<AddEventScreen> {
                   lastDate: DateTime.now().add(Duration(days: 365)),
                   initialDate: selectedDate,
                 ) ??
-                selectedDate;
+                    selectedDate;
             setState(() {});
           },
           child: Text(
-            "Choose date",
+            dateFormat,
             style: AppTextStyle.blue14Regular.copyWith(
               decoration: TextDecoration.underline,
             ),
@@ -156,6 +149,8 @@ class _AddEventScreenState extends State<AddEventScreen> {
   }
 
   Widget buildChooseTime() {
+    String timeFormat = DateFormat('h:mm a').format(selectedDate);
+
     return Row(
       children: [
         Icon(Icons.access_time_outlined, color: AppColors.blue),
@@ -170,11 +165,11 @@ class _AddEventScreenState extends State<AddEventScreen> {
                   context: context,
                   initialTime: selectedTime,
                 ) ??
-                selectedTime;
+                    selectedTime;
             setState(() {});
           },
           child: Text(
-            "Choose time",
+           timeFormat ,
             style: AppTextStyle.blue14Regular.copyWith(
               decoration: TextDecoration.underline,
             ),
@@ -184,28 +179,29 @@ class _AddEventScreenState extends State<AddEventScreen> {
     );
   }
 
-  Widget buildAddEventButton() {
+  Widget buildEditEventButton() {
     selectedDate=DateTime(selectedDate.year,selectedDate.month,selectedDate.day,selectedTime.hour,selectedTime.minute);
     return CustomButton(
-      text: "Add Event",
-      onPress: () async{
-        if(!key.currentState!.validate())return;
+      text: "Update event",
+      onPress: () {
         showLoading(context);
-        EventDm eventDm = EventDm(
-          eventID: "",
-          ownerID:UserDm.currentUser!.id,
-          category: selectedCategory,
-          dateTime: selectedDate,
-          title: titleCtrl.text,
-          desc: descCtrl.text,
+         updateEventInFireStore(EventDm.currentEvent!.eventID, selectedCategory, titleCtrl.text.isEmpty?EventDm.currentEvent!.title:titleCtrl.text,  descCtrl.text.isEmpty?EventDm.currentEvent!.desc:descCtrl.text, selectedDate);
+         Navigator.pop(context);
+         Navigator.pop(context);
+         Navigator.pop(context);
 
-        );
-
-        await createEventInFirestore(eventDm);
-        Navigator.pop(context);
-        Navigator.pop(context);
       },
     );
   }
 
 }
+// EventDm eventDm = EventDm(
+//   eventID: "",
+//   ownerID:UserDm.currentUser!.id,
+//   category: selectedCategory,
+//   dateTime: selectedDate,
+//   title: titleCtrl.text,
+//   desc: descCtrl.text,
+//
+// );
+// await createEventInFirestore(eventDm);
