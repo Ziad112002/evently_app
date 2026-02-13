@@ -1,4 +1,3 @@
-
 import 'package:evently/ui/providers/language_provider.dart';
 import 'package:evently/ui/screens/login/login_screen.dart';
 import 'package:evently/ui/screens/splash/start_screen.dart';
@@ -37,8 +36,8 @@ class Evently extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       localizationsDelegates:  AppLocalizations.localizationsDelegates,
       supportedLocales: [
-        Locale('en'), // English
-        Locale('ar'), // Spanish
+        Locale('en'),
+        Locale('ar'),
       ],
       locale: Locale(provider.currentLocale),
       home: AppConstants.showOnboarding!?StartScreen():LoginScreen(),

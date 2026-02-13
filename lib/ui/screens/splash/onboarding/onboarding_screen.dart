@@ -1,5 +1,4 @@
 import 'package:evently/l10n/app_localizations.dart';
-import 'package:evently/main.dart';
 import 'package:evently/ui/models/onboarding_dm.dart';
 import 'package:evently/ui/utils/app_assets.dart';
 import 'package:evently/ui/utils/app_colors.dart';
@@ -87,7 +86,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   currentIndex != 2
                       ? _nextPage()
                       : Navigator.push(context, AppRoutes.login);
-                  final SharedPreferences prefs = await SharedPreferences.getInstance();
+                   SharedPreferences prefs = await SharedPreferences.getInstance();
                   await prefs.setBool(AppConstants.displayOnboarding, false);
 
                 },

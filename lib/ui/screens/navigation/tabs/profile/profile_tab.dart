@@ -2,6 +2,8 @@ import 'package:evently/ui/models/user_dm.dart';
 import 'package:evently/ui/providers/language_provider.dart';
 import 'package:evently/ui/utils/app_assets.dart';
 import 'package:evently/ui/utils/app_colors.dart';
+import 'package:evently/ui/utils/app_dialogs.dart';
+import 'package:evently/ui/utils/app_routes.dart';
 import 'package:evently/ui/utils/app_textStyle.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +19,7 @@ class _ProfileTabState extends State<ProfileTab> {
   late LanguageProvider provider;
   @override
   Widget build(BuildContext context) {
-    provider=Provider.of(context);
+    provider = Provider.of(context);
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -100,9 +102,9 @@ class _ProfileTabState extends State<ProfileTab> {
             inactiveThumbColor: AppColors.white,
             activeTrackColor: AppColors.blue,
             activeThumbColor: AppColors.white,
-            value: provider.currentLocale=="ar",
+            value: provider.currentLocale == "ar",
             onChanged: (value) {
-              provider.updateLocale(value?"ar":"en");
+              provider.updateLocale(value ? "ar" : "en");
             },
           ),
         ),
@@ -121,7 +123,22 @@ class _ProfileTabState extends State<ProfileTab> {
         Text("Logout", style: AppTextStyle.black16Medium),
         Spacer(),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            showMessage(
+              context,
+              "Are you sure you want log out?",
+              title: "Confirm Logout",
+
+              onPosClick: () {
+                Navigator.pushReplacement(context, AppRoutes.login);
+              },onNegClick: () {
+                Navigator.pop(context);
+              },
+              posText: "ok",
+              negText: "cancel",
+
+            );
+          },
           icon: Icon(Icons.logout, color: AppColors.red),
         ),
       ],

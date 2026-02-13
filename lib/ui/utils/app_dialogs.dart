@@ -19,9 +19,9 @@ void showMessage(
   String message, {
   String? title,
   String? posText,
-  Function? onPosClick,
+      VoidCallback? onPosClick,
   String? negText,
-  Function? onNegClick,
+      VoidCallback? onNegClick,
 }) {
   showDialog(
     context: context,
@@ -32,18 +32,12 @@ void showMessage(
         actions: [
           if (negText != null)
             TextButton(
-              onPressed: () {
-                onNegClick?.call();
-                Navigator.pop(context);
-              },
+              onPressed: onNegClick,
               child: Text(negText),
             ),
           if (posText != null)
             TextButton(
-              onPressed: () {
-                onPosClick?.call();
-                Navigator.pop(context);
-              },
+              onPressed: onPosClick,
               child: Text(posText),
             ),
         ],

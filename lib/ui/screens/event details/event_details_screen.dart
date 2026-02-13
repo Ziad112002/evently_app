@@ -1,5 +1,6 @@
 import 'package:evently/firebase_utils/firebase_utility.dart';
 import 'package:evently/ui/models/event_dm.dart';
+import 'package:evently/ui/models/user_dm.dart';
 import 'package:evently/ui/utils/app_assets.dart';
 import 'package:evently/ui/utils/app_colors.dart';
 import 'package:evently/ui/utils/app_routes.dart';
@@ -23,17 +24,48 @@ class EventDetailsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 buildHeader(
-                  onArrowClick: (){
+                  onArrowClick: () {
                     Navigator.pop(context);
                   },
-                  onEditClick: (){
-                    Navigator.push(context, AppRoutes.editEvent);
+                  onEditClick: () {
+                    if (EventDm.currentEvent!.ownerID ==
+                        UserDm.currentUser!.id) {
+                      Navigator.push(context, AppRoutes.editEvent);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: AppColors.red,
+                          content: Text(
+                            "Oops! You can only edit events that you've created.",
+                            style: AppTextStyle.white20Medium,
+                          ),
+                        ),
+                        snackBarAnimationStyle: AnimationStyle(
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                    }
                   },
-                  onDeleteClick: (){
-                   removeEvent(EventDm.currentEvent!.eventID);
-                  Navigator.pop(context);
-
-                  }
+                  onDeleteClick: () {
+                    if (EventDm.currentEvent!.ownerID ==
+                        UserDm.currentUser!.id) {
+                      removeEvent(EventDm.currentEvent!.eventID);
+                      Navigator.pop(context);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: AppColors.red,
+                          content: Text(
+                            "Oops! You can only delete events that you've created.",
+                            style: AppTextStyle.white20Medium,
+                          ),
+                        ),
+                        snackBarAnimationStyle: AnimationStyle(
+                          duration: Duration(seconds: 2),
+                        ),
+                      );
+                    }
+                  },
                 ),
                 SizedBox(height: 16),
                 Image.asset(
@@ -48,7 +80,7 @@ class EventDetailsScreen extends StatelessWidget {
                 SizedBox(height: MediaQuery.of(context).size.height * .019),
                 buildDateTimeContainer(),
                 SizedBox(height: MediaQuery.of(context).size.height * .019),
-                 buildDescriptionContainer(),
+                buildDescriptionContainer(),
               ],
             ),
           ),
@@ -57,7 +89,11 @@ class EventDetailsScreen extends StatelessWidget {
     );
   }
 
-  Widget buildHeader({required void Function()? onArrowClick,required void Function()? onEditClick,required void Function()? onDeleteClick}) {
+  Widget buildHeader({
+    required void Function()? onArrowClick,
+    required void Function()? onEditClick,
+    required void Function()? onDeleteClick,
+  }) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -74,7 +110,7 @@ class EventDetailsScreen extends StatelessWidget {
         ),
         SizedBox(width: 8),
         CustomContainerButton(
-          onClick:onDeleteClick,
+          onClick: onDeleteClick,
           child: ImageIcon(
             AssetImage(AppAssets.trashIcon),
             color: AppColors.red,
@@ -84,53 +120,56 @@ class EventDetailsScreen extends StatelessWidget {
     );
   }
 
- Widget buildDateTimeContainer() {
-    var date= EventDm.currentEvent!.dateTime;
+  Widget buildDateTimeContainer() {
+    var date = EventDm.currentEvent!.dateTime;
     String dateFormat = DateFormat('dd MMMM').format(date);
     String timeFormat = DateFormat('h:mm a').format(date);
-    
+
     return Container(
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color:AppColors.white,
-            borderRadius: BorderRadius.circular(16)
+        color: AppColors.white,
+        borderRadius: BorderRadius.circular(16),
       ),
-      child:Row(
+      child: Row(
         children: [
           Container(
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: AppColors.whiteBlue,
-              borderRadius: BorderRadius.circular(8)
+              borderRadius: BorderRadius.circular(8),
             ),
-              child: Icon(Icons.calendar_month_outlined,color: AppColors.blue,)
+            child: Icon(Icons.calendar_month_outlined, color: AppColors.blue),
           ),
-          SizedBox(width: 16,),
+          SizedBox(width: 16),
           Column(
             crossAxisAlignment: .start,
             children: [
-              Text(dateFormat,style: AppTextStyle.black16Medium,),
-              Text(timeFormat,style: AppTextStyle.grey16Medium,),
+              Text(dateFormat, style: AppTextStyle.black16Medium),
+              Text(timeFormat, style: AppTextStyle.grey16Medium),
             ],
-          )
+          ),
         ],
       ),
     );
- }
+  }
 
   Widget buildDescriptionContainer() {
     return Column(
       crossAxisAlignment: .start,
       children: [
-        Text("Description ",style: AppTextStyle.black16Medium,),
-        SizedBox(height:8),
+        Text("Description ", style: AppTextStyle.black16Medium),
+        SizedBox(height: 8),
         Container(
           padding: EdgeInsets.all(16),
           decoration: BoxDecoration(
-              color:AppColors.white,
-              borderRadius: BorderRadius.circular(16)
+            color: AppColors.white,
+            borderRadius: BorderRadius.circular(16),
           ),
-          child:Text(EventDm.currentEvent!.desc,style: AppTextStyle.black14Regular,),
+          child: Text(
+            EventDm.currentEvent!.desc,
+            style: AppTextStyle.black14Regular,
+          ),
         ),
       ],
     );
